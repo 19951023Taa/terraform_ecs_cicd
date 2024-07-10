@@ -46,4 +46,4 @@ CICD関連構築手順
 6.CodePipeline    
 7.コードを修正してcodecommitにpushしてCICDが動くことを確認    
 
-<img width="911" alt="image" src="https://github.com/19951023Taa/terraform_ecs_cicd/assets/84821891/4075fce8-316a-4f41-a24a-62152d791908">
+<img width="910" alt="image" src="https://github.com/19951023Taa/terraform_ecs_cicd/assets/84821891/e9acedff-ca37-4fad-b319-161a3674a09f">
