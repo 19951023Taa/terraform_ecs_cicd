@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:${ACCOUNT_ID}:task-definition/container-cicd-app:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:${ACCOUNT_ID}:task-definition/container-cicd-app:6",
     "containerDefinitions": [
         {
             "name": "test-container",
@@ -27,10 +27,10 @@
             "systemControls": []
         }
     ],
-    "family": "test-app",
-    "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/terraform-ecs-cicd-dev-ecs-task-role",
+    "family": "container-cicd-app",
+    "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/terraform-ecscicd-dev-ecs-task-role",
     "networkMode": "awsvpc",
-    "revision": 3,
+    "revision": 6,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -66,6 +66,6 @@
     ],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2024-07-06T04:33:27.258Z",
-    "registeredBy": "arn:aws:iam::${ACCOUNT_ID}:user/terraform-user"
+    "registeredAt": "2024-10-18T07:01:16.290Z",
+    "registeredBy": "arn:aws:iam::${ACCOUNT_ID}:user/terraform-dev-user"
 }
