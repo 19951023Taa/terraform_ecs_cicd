@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:${ACCOUNT_ID}:task-definition/container-cicd-app:6",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:${ACCOUNT_ID}:task-definition/container-cicd-app:11",
     "containerDefinitions": [
         {
             "name": "test-container",
@@ -30,7 +30,7 @@
     "family": "container-cicd-app",
     "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/terraform-ecscicd-dev-ecs-task-role",
     "networkMode": "awsvpc",
-    "revision": 6,
+    "revision": 11,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
