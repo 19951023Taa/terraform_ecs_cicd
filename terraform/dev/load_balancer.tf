@@ -17,37 +17,37 @@ module "load_balancer" {
 module "target_blue" {
   source = "../modules/lb_target"
 
-  load_balancer_arn             = module.load_balancer.lb_arn
-  listener_port                 = 80
-  listener_protocol             = "HTTP"
-  target_group_name             = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-blue-tg"
-  target_group_port             = 8080
-  target_group_protocol         = "HTTP"
-  vpc_id                        = module.vpc_main.vpc_id
-  target_type                   = "ip"
-  health_check_interval         = 30
-  health_check_path             = "/"
-  health_check_protocol         = "HTTP"
-  health_check_timeout          = 5
-  healthy_threshold             = 3
-  unhealthy_threshold           = 3
+  load_balancer_arn     = module.load_balancer.lb_arn
+  listener_port         = 80
+  listener_protocol     = "HTTP"
+  target_group_name     = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-blue-tg"
+  target_group_port     = 8080
+  target_group_protocol = "HTTP"
+  vpc_id                = module.vpc_main.vpc_id
+  target_type           = "ip"
+  health_check_interval = 30
+  health_check_path     = "/"
+  health_check_protocol = "HTTP"
+  health_check_timeout  = 5
+  healthy_threshold     = 3
+  unhealthy_threshold   = 3
 }
 
 module "target_green" {
   source = "../modules/lb_target"
 
-  load_balancer_arn             = module.load_balancer.lb_arn
-  listener_port                 = 8080
-  listener_protocol             = "HTTP"
-  target_group_name             = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-green-tg"
-  target_group_port             = 8080
-  target_group_protocol         = "HTTP"
-  vpc_id                        = module.vpc_main.vpc_id
-  target_type                   = "ip"
-  health_check_interval         = 30
-  health_check_path             = "/"
-  health_check_protocol         = "HTTP"
-  health_check_timeout          = 5
-  healthy_threshold             = 3
-  unhealthy_threshold           = 3
+  load_balancer_arn     = module.load_balancer.lb_arn
+  listener_port         = 8080
+  listener_protocol     = "HTTP"
+  target_group_name     = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-green-tg"
+  target_group_port     = 8080
+  target_group_protocol = "HTTP"
+  vpc_id                = module.vpc_main.vpc_id
+  target_type           = "ip"
+  health_check_interval = 30
+  health_check_path     = "/"
+  health_check_protocol = "HTTP"
+  health_check_timeout  = 5
+  healthy_threshold     = 3
+  unhealthy_threshold   = 3
 }

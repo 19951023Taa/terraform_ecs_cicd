@@ -1,6 +1,6 @@
 # コードデプロイ アプリケーション
 resource "aws_codedeploy_app" "example" {
-  name     = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-codedeploy-app"
+  name             = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-codedeploy-app"
   compute_platform = "ECS"
 }
 
@@ -9,15 +9,15 @@ resource "aws_iam_role" "DeployRoleForECS" {
   name = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-CodeDeployRole"
 
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "codedeploy.amazonaws.com"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "codedeploy.amazonaws.com"
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
@@ -34,10 +34,10 @@ resource "aws_iam_role_policy_attachment" "DeployRoleForECS" {
 }
 
 resource "aws_codedeploy_deployment_group" "example" {
-  app_name              = aws_codedeploy_app.example.name
-  deployment_group_name = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-deploy-group"
+  app_name               = aws_codedeploy_app.example.name
+  deployment_group_name  = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-deploy-group"
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
-  service_role_arn      = aws_iam_role.DeployRoleForECS.arn
+  service_role_arn       = aws_iam_role.DeployRoleForECS.arn
 
   auto_rollback_configuration {
     enabled = true

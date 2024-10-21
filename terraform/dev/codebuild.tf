@@ -1,7 +1,7 @@
 # CodeBuildプロジェクト
 resource "aws_codebuild_project" "build_project" {
-  name       = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-build_project"
-  description = "CodeBuild example project"
+  name         = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-build_project"
+  description  = "CodeBuild example project"
   service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
@@ -16,12 +16,12 @@ resource "aws_codebuild_project" "build_project" {
   }
 
   source {
-    type            = "CODEPIPELINE"
-    buildspec       = "container/buildspec.yml"
+    type      = "CODEPIPELINE"
+    buildspec = "container/buildspec.yml"
   }
 
   cache {
-    type     = "NO_CACHE"
+    type = "NO_CACHE"
   }
 }
 
@@ -31,15 +31,15 @@ resource "aws_iam_role" "codebuild_role" {
   name = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-CodeBuildRole"
 
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "codebuild.amazonaws.com"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "codebuild.amazonaws.com"
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
@@ -56,45 +56,45 @@ resource "aws_iam_policy" "CodeBuild_policy" {
 
   policy = jsonencode({
     Version = "2012-10-17"
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Resource": [
-                "arn:aws:logs:ap-northeast-1:${data.aws_caller_identity.this.account_id}:log-group:/aws/codebuild/terraform-ecscicd-dev-build_project",
-                "arn:aws:logs:ap-northeast-1:${data.aws_caller_identity.this.account_id}:log-group:/aws/codebuild/terraform-ecscicd-dev-build_project:*"
-            ],
-            "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Resource": [
-                "arn:aws:s3:::codepipeline-ap-northeast-1-*"
-            ],
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketAcl",
-                "s3:GetBucketLocation"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "codebuild:CreateReportGroup",
-                "codebuild:CreateReport",
-                "codebuild:UpdateReport",
-                "codebuild:BatchPutTestCases",
-                "codebuild:BatchPutCodeCoverages"
-            ],
-            "Resource": [
-                "arn:aws:codebuild:ap-northeast-1:${data.aws_caller_identity.this.account_id}:report-group/terraform-ecscicd-dev-build_project-*"
-            ]
-        }
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Resource" : [
+          "arn:aws:logs:ap-northeast-1:${data.aws_caller_identity.this.account_id}:log-group:/aws/codebuild/terraform-ecscicd-dev-build_project",
+          "arn:aws:logs:ap-northeast-1:${data.aws_caller_identity.this.account_id}:log-group:/aws/codebuild/terraform-ecscicd-dev-build_project:*"
+        ],
+        "Action" : [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+      },
+      {
+        "Effect" : "Allow",
+        "Resource" : [
+          "arn:aws:s3:::codepipeline-ap-northeast-1-*"
+        ],
+        "Action" : [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "s3:GetBucketAcl",
+          "s3:GetBucketLocation"
+        ]
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "codebuild:CreateReportGroup",
+          "codebuild:CreateReport",
+          "codebuild:UpdateReport",
+          "codebuild:BatchPutTestCases",
+          "codebuild:BatchPutCodeCoverages"
+        ],
+        "Resource" : [
+          "arn:aws:codebuild:ap-northeast-1:${data.aws_caller_identity.this.account_id}:report-group/terraform-ecscicd-dev-build_project-*"
+        ]
+      }
     ]
   })
 }
