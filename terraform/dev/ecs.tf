@@ -17,15 +17,15 @@ resource "aws_iam_role" "ecs_execution" {
   name = "${local.PROJECT}-${local.SYSTEM}-${var.ENV}-ecs-task-role"
 
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Sid": "",
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "ecs-tasks.amazonaws.com"
+        "Sid" : "",
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : "ecs-tasks.amazonaws.com"
         },
-        "Action": "sts:AssumeRole"
+        "Action" : "sts:AssumeRole"
       }
     ]
   })
@@ -86,10 +86,10 @@ resource "aws_ecs_service" "main" {
   launch_type     = "FARGATE"
 
   network_configuration {
-  subnets = [
-    module.vpc_subnets["private_subnet_a_01"].subnet_id,
-    module.vpc_subnets["private_subnet_c_01"].subnet_id
-  ]
+    subnets = [
+      module.vpc_subnets["private_subnet_a_01"].subnet_id,
+      module.vpc_subnets["private_subnet_c_01"].subnet_id
+    ]
     security_groups  = [module.ecs_sg.security_group_id]
     assign_public_ip = false
   }
