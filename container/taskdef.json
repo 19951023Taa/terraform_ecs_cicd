@@ -28,7 +28,7 @@
         }
     ],
     "family": "container-cicd-app",
-    "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/terraform-ecscicd-dev-ecs-task-role",
+    "executionRoleArn": "arn:aws:iam::550733172573:role/terraform-ecscicd-dev-ecs-task-role",
     "networkMode": "awsvpc",
     "revision": 11,
     "volumes": [],
